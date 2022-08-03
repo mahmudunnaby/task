@@ -1,5 +1,7 @@
 import React from 'react';
+import Modalw from '../Products/Modalw';
 import Products from '../Products/Products';
+
 
 
 const Home = () => {
@@ -7,7 +9,7 @@ const Home = () => {
     return (
         <div>
 
-            <Products></Products>
+
         </div>
     );
 };

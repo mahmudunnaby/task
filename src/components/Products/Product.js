@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../Shared/Button';
 
-const Product = ({ product }) => {
+const Product = ({ product, setDetails, setShow }) => {
     const { name, image, category, brand, size, price, year } = product
+
+
+    const handleDetails = (product) => {
+        setDetails(product)
+    }
+
     return (
         <div className="card m-3 col-12 col-md-6 shadow-lg p-3 mb-5 bg-body rounded " style={{ width: '540px' }}>
             <div className="row g-0 ">
@@ -19,13 +25,13 @@ const Product = ({ product }) => {
                         <p className="card-text">{year}</p>
                     </div>
                     <div >
-                        <Button >Details </Button>
+                        <button onClick={() => handleDetails(product)} onClick={() => setShow(true)} className='btn btn-primary' >Details</button>
                         <Button>Delete</Button>
                     </div>
 
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
