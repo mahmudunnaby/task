@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../Shared/Button';
 
-const Product = ({ product, setDetails, setShow, setHandledelete, showconfirm, setShowconfirm }) => {
+const Product = ({ product, setDetails, setShow, setHandledelete, setShowconfirm, btndelete }) => {
     const { name, image, category, brand, size, price, year } = product
 
     const handleClick = (product) => {
@@ -9,10 +9,7 @@ const Product = ({ product, setDetails, setShow, setHandledelete, showconfirm, s
         setShow(true)
     }
 
-    const handleDelete = (name) => {
-        setHandledelete(name)
-        setShowconfirm(true)
-    }
+
 
 
     return (
@@ -32,7 +29,7 @@ const Product = ({ product, setDetails, setShow, setHandledelete, showconfirm, s
                     </div>
                     <div >
                         <button onClick={() => handleClick(product)} className='btn btn-primary me-3' >Details</button>
-                        <button onClick={() => handleDelete(name)} className='btn btn-primary' >Delete</button>
+                        <button onClick={() => btndelete(name)} className='btn btn-primary' >Delete</button>
 
                     </div>
 

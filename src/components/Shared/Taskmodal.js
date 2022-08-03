@@ -4,9 +4,13 @@ import Modal from 'react-bootstrap/Modal';
 
 const Taskmodal = ({ details, show, setShow, setConfiremdelete, handledelete, setShowconfirm, showconfirm }) => {
     const { name, category, brand, size, price, year } = details
+    const handleconfirm = () => {
+        setConfiremdelete(true)
+        setShowconfirm(false)
+    }
     return (
         <div>
-            {!show &&
+            {showconfirm &&
                 <Modal
                     show={showconfirm}
                     onHide={() => setShowconfirm(false)}
@@ -19,13 +23,13 @@ const Taskmodal = ({ details, show, setShow, setConfiremdelete, handledelete, se
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <button>confirm</button>
+                        <button onClick={() => handleconfirm(true)}>confirm</button>
                     </Modal.Body>
                 </Modal>
 
             }
 
-            <Modal
+            {show && <Modal
                 show={show}
                 onHide={() => setShow(false)}
                 dialogClassName="modal-90w"
@@ -45,7 +49,7 @@ const Taskmodal = ({ details, show, setShow, setConfiremdelete, handledelete, se
                     <p className="card-text">{year}</p>
 
                 </Modal.Body>
-            </Modal>
+            </Modal>}
 
 
         </div >

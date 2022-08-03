@@ -5,10 +5,11 @@ import Product from './Product';
 
 const Products = () => {
     const [products, setProducts] = useState([])
+    const [remainingproducts, setRemainingproducts] = useState([])
     const [details, setDetails] = useState(null)
     const [show, setShow] = useState(false);
     const [showconfirm, setShowconfirm] = useState(false);
-    const [handledelete, setHandledelete] = useState([]);
+    const [handledelete, setHandledelete] = useState('');
     const [confiremdelete, setConfiremdelete] = useState(false);
 
 
@@ -19,16 +20,31 @@ const Products = () => {
             .then(data => setProducts(data))
     }, [])
 
-    // const remainingProducts = products.filter(product => {
-    //     return product.name != handledelete
-    // })
 
 
 
-    // if (confiremdelete) {
 
-    //     setProducts(remainingProducts)
-    // }
+
+    const btndelete = (name) => {
+        setHandledelete(name)
+        setShowconfirm(true)
+        setProducts(products.filter(product => {
+            return product.name != handledelete
+        }))
+
+    }
+
+
+    // useEffect(() => {
+    //     if (confiremdelete) {
+    //         const remaining = products.filter(product => {
+    //             return product.name != handledelete
+    //         })
+    //         setProducts(remaining)
+    //     }
+    // }, [])
+
+
 
 
 
@@ -38,8 +54,7 @@ const Products = () => {
             <div className='container'>
                 <div className='row d-flex justify-content-center'>
                     {
-
-                        products.map(product => <Product key={product.name} product={product} setDetails={setDetails} setShow={setShow} setHandledelete={setHandledelete} showconfirm={showconfirm} setShowconfirm={setShowconfirm}  >
+                        products.map(product => <Product key={product.name} product={product} setDetails={setDetails} setShow={setShow} setHandledelete={setHandledelete} showconfirm={showconfirm} setShowconfirm={setShowconfirm} btndelete={btndelete}  >
                         </Product>)
                     }
                     {
@@ -58,6 +73,14 @@ const Products = () => {
                         console.log(remainingProducts)
 
                     } */}
+                    {
+                        console.log(confiremdelete)
+
+                    }
+                    {
+                        console.log(products)
+
+                    }
                     {console.log(show)}
                     {details && <Taskmodal details={details} show={show} setShow={setShow} setConfiremdelete={setConfiremdelete} handledelete={handledelete} showconfirm={showconfirm} setShowconfirm={setShowconfirm}  ></Taskmodal>}
 
