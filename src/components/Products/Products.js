@@ -26,6 +26,10 @@ const Products = () => {
                         console.log(details)
 
                     }
+                    {
+                        console.log(products)
+
+                    }
                     {console.log(show)}
                     {details && <Taskmodal details={details} show={show} setShow={setShow} ></Taskmodal>}
                 </div>

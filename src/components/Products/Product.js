@@ -4,10 +4,11 @@ import Button from '../Shared/Button';
 const Product = ({ product, setDetails, setShow }) => {
     const { name, image, category, brand, size, price, year } = product
 
-
-    const handleDetails = (product) => {
+    const handleClick = (product) => {
         setDetails(product)
+        setShow(true)
     }
+
 
     return (
         <div className="card m-3 col-12 col-md-6 shadow-lg p-3 mb-5 bg-body rounded " style={{ width: '540px' }}>
@@ -25,8 +26,8 @@ const Product = ({ product, setDetails, setShow }) => {
                         <p className="card-text">{year}</p>
                     </div>
                     <div >
-                        <button onClick={() => handleDetails(product)} onClick={() => setShow(true)} className='btn btn-primary' >Details</button>
-                        <Button>Delete</Button>
+                        <button onClick={() => handleClick(product)} className='btn btn-primary' >Details</button>
+                        <Button >Delete</Button>
                     </div>
 
                 </div>
