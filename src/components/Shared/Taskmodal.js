@@ -2,10 +2,28 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const Taskmodal = ({ details, show, setShow }) => {
+const Taskmodal = ({ details, show, setShow, setConfiremdelete, handledelete, setShowconfirm, showconfirm }) => {
     const { name, category, brand, size, price, year } = details
     return (
         <div>
+            {!show &&
+                <Modal
+                    show={showconfirm}
+                    onHide={() => setShowconfirm(false)}
+                    dialogClassName="modal-90w"
+                    aria-labelledby="example-custom-modal-styling-title"
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title id="example-custom-modal-styling-title">
+                            <h5 className="card-title">Are you sure?</h5>
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <button>confirm</button>
+                    </Modal.Body>
+                </Modal>
+
+            }
 
             <Modal
                 show={show}
@@ -25,8 +43,11 @@ const Taskmodal = ({ details, show, setShow }) => {
                     <p className="card-text">{size}</p>
                     <p className="card-text">{price}</p>
                     <p className="card-text">{year}</p>
+
                 </Modal.Body>
             </Modal>
+
+
         </div >
     );
 };
