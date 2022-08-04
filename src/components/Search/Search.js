@@ -9,7 +9,7 @@ const Search = () => {
     const [products, setProducts] = useState([])
     const [filteredSearch, setfilteredSearch] = useState([])
     const [year, setYear] = useState(false)
-    const [catagory, setCatagory] = useState(false)
+    const [category, setcategory] = useState(false)
 
 
     useEffect(() => {
@@ -24,19 +24,36 @@ const Search = () => {
         const search = refSearch.current.value
 
 
-        const catagorySearch = search.toLowerCase(search)
+        const categorySearch = search.toLowerCase()
 
-        if (year || catagory) {
+        if (year || category) {
 
             const SearchResult = products.filter(product => {
-                return product?.year?.includes(search) || product?.catagory?.includes(catagorySearch)
+                return product?.year?.includes(search) || product?.catagory?.includes(categorySearch)
             })
 
             setfilteredSearch(SearchResult)
         }
+        // if (year) {
+
+        //     const SearchResult = products.filter(product => {
+        //         return product?.year?.includes(search)
+        //     })
+
+        //     setfilteredSearch(SearchResult)
+        // }
+        if (category) {
+            const SearchResult = products.filter(product => {
+                return product?.category?.includes(categorySearch)
+            })
+            setfilteredSearch(SearchResult)
+        }
+
+
 
 
         console.log(filteredSearch);
+        console.log(categorySearch);
     }
 
 
@@ -48,7 +65,7 @@ const Search = () => {
             <Form onSubmit={handleSubmit} className='p-3 d-flex justify-content-center align-items-center '>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check onClick={() => { setYear(!year) }} type="checkbox" label="Year" />
-                    <Form.Check onClick={() => { setCatagory(!catagory) }} type="checkbox" label="catagory" />
+                    <Form.Check onClick={() => { setcategory(!category) }} type="checkbox" label="category" />
                 </Form.Group>
                 <Form.Group className="mb-3 d-flex flex-row justify-content-center align-items-center" controlId="formBasicEmail">
                     <Form.Label className='px-4 fw-bold'>Search</Form.Label>
@@ -64,6 +81,7 @@ const Search = () => {
                     </Product>)
                 }
             </div>
+
         </div>
 
 
